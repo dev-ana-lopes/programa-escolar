@@ -17,52 +17,73 @@ def executaComando():
     solicitacao = chamaMenu()
 
     if solicitacao == 1:
-
-        crm = (input('Informe o crm: '))
-        nome = input('Informe o nome: ')
-        curso = input('Informe o curso: ')
-        aluno = {'crm': crm, 'nome': nome, 'curso': curso}
-        lista.append(aluno)
+        
+        cadastraAluno()
         
         return print('Aluno cadastrado')
         
     elif solicitacao == 2:
-        crm = input('Informe o crm do aluno que deseja altera: ')
-        find = next(x for x in lista if x["crm"] == crm)
-        index = lista.index(find)
-        nome = input('Informe o nome: ')
-        curso = input('Informe o curso: ')
-        lista[index] = {"nome": nome, "curso": curso}
+        
+        alteraAluno()
         
         return print('Aluno alterado')
 
     elif solicitacao == 3:
-        crm = input('Informe o crm do aluno que deseja visualizar: ')
-        find = next(x for x in lista if x["crm"] == crm)
-        print('Aluno encontrado\n')
-        sleep(1)
-        print(find)
-        sleep(1)
+        
+        visualizaAluno()
 
     elif solicitacao == 4:
-        crm = input('Informe o crm do aluno que deseja deletar: ')
-        find = next(x for x in lista if x["crm"] == crm)
-        index = lista.index(find)
-        lista.pop(index)
+        
+        deletaAluno()
+        
         return print('Aluno apagado')
 
     elif solicitacao == 5:
         
-        print('Até logo...')
-        
-        return exit
+        sair() 
         
     else:
-        sleep(1)
-        print('\nO número inserido não está de acordo com o menu. Tente Novamente!!\n')
-        sleep(1)
+        digitoNaoEncontrado()
       
+def cadastraAluno():
+    crm = (input('Informe o crm: '))
+    nome = input('Informe o nome: ')
+    curso = input('Informe o curso: ')
+    aluno = {'crm': crm, 'nome': nome, 'curso': curso}
+    lista.append(aluno)
+
+def alteraAluno():
+    crm = input('Informe o crm do aluno que deseja altera: ')
+    find = next(x for x in lista if x["crm"] == crm)
+    index = lista.index(find)
+    nome = input('Informe o nome: ')
+    curso = input('Informe o curso: ')
+    lista[index] = {"nome": nome, "curso": curso}
     
+def visualizaAluno():
+    crm = input('Informe o crm do aluno que deseja visualizar: ')
+    find = next(x for x in lista if x["crm"] == crm)
+    print('Aluno encontrado\n')
+    sleep(1)
+    print(find)
+    sleep(1)
+    
+def deletaAluno():
+    crm = input('Informe o crm do aluno que deseja deletar: ')
+    find = next(x for x in lista if x["crm"] == crm)
+    index = lista.index(find)
+    lista.pop(index)
+    
+def sair():
+    print('Até logo...')
+    return exit
+ 
+def digitoNaoEncontrado():
+    sleep(1)
+    print('\nO número inserido não está de acordo com o menu. Tente Novamente!!\n')
+    sleep(1)
+
+      
 if __name__ == '__main__': 
     
     inicializacao()
